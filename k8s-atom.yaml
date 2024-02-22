@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: atom
-    - image: boomi/atom:release
+      image: boomi/atom:release
   env:
     - name: BOOMI_ATOMNAME
       value: "k8s-atom"
