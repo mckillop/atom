@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mol
+spec:
+  containers:
+    - name: mole
+      image: boomi/molecule:release
+      env:
+        - name: BOOMI_ATOMNAME
+          value: "k8s-mol"
+        - name: ATOM_LOCALHOSTID
+          value: "k8s-mol"
+        - name: INSTALL_TOKEN
+          value: "molecule-f3fb467e-d2d7-4afd-97a0-f7cb82caa869"
+        - name : BOOMI_ENVIRONMENTID
+          value: "40590140-dc5b-4c49-89f9-47f99641a0d4"
