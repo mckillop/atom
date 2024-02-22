@@ -6,12 +6,12 @@ spec:
   containers:
     - name: atom
       image: boomi/atom:release
-    env:
-      - name: BOOMI_ATOMNAME
-        value: "k8s-atom"
-      - name: ATOM_LOCALHOSTID
-        value: "k8s-atom"
-      - name: INSTALL_TOKEN
-        value: "atom-ef914399-b4b3-4330-86db-50f7a41e9f3f"
-      - name : BOOMI_ENVIRONMENTID
-        value: "40590140-dc5b-4c49-89f9-47f99641a0d4"
+      env:
+        - name: BOOMI_ATOMNAME
+          value: "k8s-atom"
+        - name: ATOM_LOCALHOSTID
+          value: "k8s-atom"
+        - name: INSTALL_TOKEN
+          value: "atom-ef914399-b4b3-4330-86db-50f7a41e9f3f"
+        - name : BOOMI_ENVIRONMENTID
+          value: "40590140-dc5b-4c49-89f9-47f99641a0d4"
