@@ -4,7 +4,7 @@ metadata:
   name: atom
 spec:
   containers:
-	- name: atom
+    - name: atom
     - image: boomi/atom:release
   env:
     - name: BOOMI_ATOMNAME
