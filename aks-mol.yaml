@@ -1,22 +1,26 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: molecule
+  name: mol
   labels:
-    app: molecule
+    app: mol
 spec:
   selector:
     matchLabels:
-      app: molecule
+      app: mol
   replicas: 2
   template:
     metadata:
       labels:
-        app: molecule
+        app: mol
     spec:
+      terminationGracePeriodSeconds: 900
       containers:
       - image: boomi/molecule:release
-        name: atom-node
+        name: molnode
+        ports:
+        - containerPort: 9090
+          protocol: TCP        
         resources:
           limits:
             cpu: "1000m"
@@ -24,14 +28,25 @@ spec:
           requests:
             cpu: "500m"
             memory: "768Mi"      
+        readinessProbe:
+          periodSeconds: 10
+          initialDelaySeconds: 10
+          httpGet:
+            path: /_admin/readiness
+            port: 9090
+        livenessProbe:
+          periodSeconds: 60
+          httpGet:
+            path: /_admin/liveness
+            port: 9090
         env:
         - name: BOOMI_ATOMNAME
-          value: "boomi-molecule"
+          value: "aks-mol"
         - name: ATOM_LOCALHOSTID
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
         - name: INSTALL_TOKEN
-          value: "molecule-5d2b71f2-ad86-4994-838d-58a921152b65"
+          value: "molecule-9946bc81-7410-4719-926c-6e42f6bf15f5"
         - name : BOOMI_ENVIRONMENTID
           value: "ae8230f6-bde3-4ab9-8676-ebbac87396a3"
