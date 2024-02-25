@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: molecule
+  labels:
+    app: molecule
+spec:
+  selector:
+    matchLabels:
+      app: molecule
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: molecule
+    spec:
+      containers:
+      - image: boomi/molecule:release
+        env:
+        - name: BOOMI_ATOMNAME
+          value: "boomi-molecule"
+        - name: ATOM_LOCALHOSTID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: INSTALL_TOKEN
+          value: "molecule-5d2b71f2-ad86-4994-838d-58a921152b65"
+        - name : BOOMI_ENVIRONMENTID
+          value: "ae8230f6-bde3-4ab9-8676-ebbac87396a3"
