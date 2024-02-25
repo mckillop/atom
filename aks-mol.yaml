@@ -16,6 +16,14 @@ spec:
     spec:
       containers:
       - image: boomi/molecule:release
+        name: atom-node
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "1024Mi"
+          requests:
+            cpu: "500m"
+            memory: "768Mi"      
         env:
         - name: BOOMI_ATOMNAME
           value: "boomi-molecule"
