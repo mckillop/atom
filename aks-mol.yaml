@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: boomi-storage
+  name: aksnfs
 spec:
   storageClassName: ""
   capacity:
@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: boomi-storage
+  name: aksnfs
 spec:
   accessModes:
     - ReadWriteMany
@@ -43,14 +43,14 @@ spec:
     spec:
       terminationGracePeriodSeconds: 900
       volumes:
-        - name: boomi-storage
+        - name: aksnfs
           persistentVolumeClaim:
-            claimName: pv-volume
+            claimName: aksnfs
       containers:
       - image: boomi/molecule:release
         name: molnode
         volumeMounts:
-        - name: boomi-storage
+        - name: aksnfs
           mountPath: /mnt/boomi
         ports:
         - containerPort: 9090
