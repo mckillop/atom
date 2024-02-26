@@ -15,9 +15,17 @@ spec:
         app: mol
     spec:
       terminationGracePeriodSeconds: 900
+      volumes:
+      - name: nfs
+        nfs:
+          server: aksstorage20240226.file.core.windows.net
+          path: /aksstorage20240226/aksnfs      
       containers:
       - image: boomi/molecule:release
         name: molnode
+        volumeMounts:
+        - name: nfs
+          mountPath: /mnt/boomi
         ports:
         - containerPort: 9090
           protocol: TCP        
@@ -47,6 +55,6 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: INSTALL_TOKEN
-          value: "molecule-9946bc81-7410-4719-926c-6e42f6bf15f5"
+          value: "molecule-e90788ad-95cd-4b81-8f7e-bce1bf31b32f"
         - name : BOOMI_ENVIRONMENTID
           value: "ae8230f6-bde3-4ab9-8676-ebbac87396a3"
