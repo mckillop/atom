@@ -14,7 +14,7 @@ spec:
   nfs:
     server: aksstorage20240226.file.core.windows.net
     path: /aksstorage20240226/aksnfs
---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: boomi-storage
@@ -25,7 +25,7 @@ spec:
   resources:
     requests:
       storage: 5Gi    
---
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mol
